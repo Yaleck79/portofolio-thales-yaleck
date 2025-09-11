@@ -1,64 +1,3 @@
-<?php
-// Traitement du formulaire
-$message = '';
-$message_type = '';
-
-if ($_POST) {
-    $nom = htmlspecialchars(trim($_POST['nom']));
-    $email = htmlspecialchars(trim($_POST['email']));
-    $sujet = htmlspecialchars(trim($_POST['sujet']));
-    $message_content = htmlspecialchars(trim($_POST['message']));
-    $date = date('Y-m-d H:i:s');
-    
-    // Validation
-    if (empty($nom) || empty($email) || empty($sujet) || empty($message_content)) {
-        $message = 'Tous les champs sont obligatoires.';
-        $message_type = 'error';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $message = 'Adresse email invalide.';
-        $message_type = 'error';
-    } else {
-        // Formatage du message pour le fichier
-        $message_data = "=== NOUVEAU MESSAGE ===\n";
-        $message_data .= "Date: $date\n";
-        $message_data .= "Nom: $nom\n";
-        $message_data .= "Email: $email\n";
-        $message_data .= "Sujet: $sujet\n";
-        $message_data .= "Message: $message_content\n";
-        $message_data .= "IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
-        $message_data .= "User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "\n";
-        $message_data .= "========================\n\n";
-        
-        // Sauvegarde dans messages.txt
-        if (file_put_contents('messages.txt', $message_data, FILE_APPEND | LOCK_EX)) {
-            $message = 'Votre message a été envoyé avec succès !';
-            $message_type = 'success';
-            
-            // Optionnel: Envoi par email
-            $to = 'thalesyaleckmiracle@gmail.com';
-            $subject = "Nouveau message de $nom - $sujet";
-            $body = "Nouveau message reçu de votre portfolio :\n\n";
-            $body .= "Nom: $nom\n";
-            $body .= "Email: $email\n";
-            $body .= "Sujet: $sujet\n\n";
-            $body .= "Message:\n$message_content\n\n";
-            $body .= "---\nDate: $date";
-            
-            $headers = "From: noreply@votresite.com\r\n";
-            $headers .= "Reply-To: $email\r\n";
-            $headers .= "X-Mailer: PHP/" . phpversion();
-            
-            // Décommenter la ligne suivante pour activer l'envoi d'email
-            // mail($to, $subject, $body, $headers);
-            
-        } else {
-            $message = 'Erreur lors de l\'envoi du message. Veuillez réessayer.';
-            $message_type = 'error';
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -367,6 +306,11 @@ if ($_POST) {
             transform: translateY(-2px);
         }
 
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
         /* Messages d'alerte */
         .message {
             padding: 2rem;
@@ -376,6 +320,11 @@ if ($_POST) {
             font-weight: 600;
             text-align: center;
             animation: slideDown 0.5s ease;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
         }
 
         .message.success {
@@ -567,13 +516,9 @@ if ($_POST) {
             <div class="contact-form fade-in">
                 <h3>Envoyez-moi un Message</h3>
                 
-                <?php if (!empty($message)): ?>
-                    <div class="message <?php echo $message_type; ?>">
-                        <?php echo $message; ?>
-                    </div>
-                <?php endif; ?>
+                <div id="message" class="message"></div>
 
-                <form method="POST" action="" id="contactForm">
+                <form id="contactForm">
                     <div class="form-group">
                         <label for="nom">Nom Complet *</label>
                         <input type="text" id="nom" name="nom" required placeholder="Votre nom complet">
@@ -590,8 +535,8 @@ if ($_POST) {
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Votre Message *</label>
-                        <textarea id="message" name="message" required placeholder="Décrivez votre projet, vos besoins ou posez votre question..."></textarea>
+                        <label for="messageText">Votre Message *</label>
+                        <textarea id="messageText" name="message" required placeholder="Décrivez votre projet, vos besoins ou posez votre question..."></textarea>
                     </div>
 
                     <button type="submit" class="btn-submit">
@@ -603,6 +548,12 @@ if ($_POST) {
     </section>
 
     <script>
+        // Configuration EmailJS (vous devez créer un compte sur emailjs.com)
+        // Remplacez ces valeurs par vos propres clés EmailJS
+        const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+        const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+        const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
         // Animation au scroll
         const observerOptions = {
             threshold: 0.1,
@@ -625,15 +576,86 @@ if ($_POST) {
             observer.observe(el);
         });
 
-        // Animation du bouton de soumission
-        document.getElementById('contactForm').addEventListener('submit', function() {
+        // Fonction pour afficher les messages
+        function showMessage(text, type) {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = text;
+            messageEl.className = `message ${type} show`;
+            
+            // Masquer le message après 5 secondes
+            setTimeout(() => {
+                messageEl.classList.remove('show');
+            }, 5000);
+        }
+
+        // Traitement du formulaire avec EmailJS
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
             const btn = document.querySelector('.btn-submit');
+            const form = this;
+            
+            // Validation côté client
+            const nom = form.nom.value.trim();
+            const email = form.email.value.trim();
+            const sujet = form.sujet.value.trim();
+            const message = form.message.value.trim();
+            
+            if (!nom || !email || !sujet || !message) {
+                showMessage('Tous les champs sont obligatoires.', 'error');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showMessage('Adresse email invalide.', 'error');
+                return;
+            }
+            
+            // Animation du bouton
             btn.classList.add('loading');
             btn.disabled = true;
+            
+            // Alternative 1: Utilisation d'EmailJS (recommandé)
+            if (typeof emailjs !== 'undefined') {
+                emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form, EMAILJS_PUBLIC_KEY)
+                    .then(function(response) {
+                        showMessage('Votre message a été envoyé avec succès !', 'success');
+                        form.reset();
+                    }, function(error) {
+                        showMessage('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+                        console.error('EmailJS error:', error);
+                    })
+                    .finally(function() {
+                        btn.classList.remove('loading');
+                        btn.disabled = false;
+                    });
+            } else {
+                // Alternative 2: Ouverture du client email par défaut
+                setTimeout(() => {
+                    const subject = encodeURIComponent(sujet);
+                    const body = encodeURIComponent(
+                        `Nom: ${nom}\n\nMessage:\n${message}\n\n---\nEnvoyé depuis le portfolio de Thalès Yaleck`
+                    );
+                    const mailtoLink = `mailto:thalesyaleckmiracle@gmail.com?subject=${subject}&body=${body}`;
+                    
+                    window.location.href = mailtoLink;
+                    
+                    showMessage('Votre client email va s\'ouvrir. Envoyez le message pré-rempli.', 'success');
+                    
+                    btn.classList.remove('loading');
+                    btn.disabled = false;
+                }, 1000);
+            }
         });
 
+        // Validation email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
         // Auto-resize textarea
-        const textarea = document.getElementById('message');
+        const textarea = document.getElementById('messageText');
         textarea.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = this.scrollHeight + 'px';
@@ -645,11 +667,32 @@ if ($_POST) {
             input.addEventListener('blur', function() {
                 if (!this.value.trim()) {
                     this.style.borderColor = '#e74c3c';
+                } else if (this.type === 'email' && !isValidEmail(this.value)) {
+                    this.style.borderColor = '#e74c3c';
                 } else {
                     this.style.borderColor = '#27ae60';
                 }
             });
+            
+            input.addEventListener('input', function() {
+                if (this.style.borderColor === 'rgb(231, 76, 60)') {
+                    this.style.borderColor = 'rgba(52, 152, 219, 0.2)';
+                }
+            });
         });
+
+        // Charger EmailJS (optionnel)
+        // Décommentez cette section si vous voulez utiliser EmailJS
+        /*
+        (function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.emailjs.com/dist/email.min.js';
+            script.onload = function() {
+                emailjs.init(EMAILJS_PUBLIC_KEY);
+            };
+            document.head.appendChild(script);
+        })();
+        */
     </script>
 </body>
 </html>
