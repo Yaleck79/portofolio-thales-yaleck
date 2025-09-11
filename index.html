@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thalès Yaleck - Développeur Web</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="#home" class="logo">TY.</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#home" class="active">Accueil</a>
+            <a href="#about">À Propos</a>
+            <a href="#skills">Compétences</a>
+            <a href="#projects">Projets</a>
+            <a href="contact.php">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <!-- Video Background -->
+        <div class="video-background">
+            <video autoplay muted loop>
+                <source src="https://cdn.pixabay.com/video/2022/03/14/110694-688200174_large.mp4" type="video/mp4">
+                <!-- Fallback image -->
+                <div class="fallback-bg" style="background-image: url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="home-content">
+            <h3>Bonjour, c'est moi</h3>
+            <h1>Thalès Yaleck</h1>
+            <h3>Et je suis <span class="multiple-text"></span></h3>
+            <p>Développeur web en attente de certification, passionné par le design et les technologies modernes. Je réalise des projets en Laravel et PHP et possède également des compétences solides en maintenance informatique.</p>
+            
+            <div class="social-media">
+                <a href="https://www.facebook.com/profile.php?id=61577926646539" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://wa.me/2290140851046"><i class='bx bxl-whatsapp' target="_blank"></i></a>
+                <a href="https://linkedin.com/in/yaleck-thales" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://github.com/Yaleck79" target="_blank"><i class='bx bxl-github'></i></a>
+            </div>
+            <a href="CV-VIGNIGBE GLELE THALES_Validé.pdf" class="btn" download><span>Télécharger CV</span></a>
+        </div>
+        
+        <div class="home-img">
+            <div class="profile-img">
+                <img src="icon.jpg" alt="Profile" />
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about scroll-reveal" id="about">
+        <div class="section-bg-image" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="section-overlay"></div>
+        
+        <h2 class="section-title">À Propos de Moi</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Développeur Web Passionné</h3>
+                <p>Je suis un développeur web en attente de certification, diplômé en Technicien en Initiation et Maintenance Informatique. Ma passion pour le développement web m'a conduit à suivre une formation professionnelle à EIG BENIN.</p>
+                
+                <p>Mon approche combine créativité et fonctionnalité pour créer des expériences utilisateur exceptionnelles. J'ai une expérience pratique avec des technologies modernes comme Laravel, PHP, HTML5, CSS3 et JavaScript.</p>
+                
+                <p>Au-delà du développement, j'ai également une expérience en restauration en tant que barman et je suis membre actif du groupe musical de mon église MMO.</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">% Réactif</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="3">0</span>
+                    <span class="stat-label">Années d'Études</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">% Motivation</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10">0</span>
+                    <span class="stat-label">Formations Complétées</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills scroll-reveal" id="skills">
+        <div class="section-bg-image" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="section-overlay"></div>
+        
+        <h2 class="section-title">Mes Compétences</h2>
+        
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3><i class='bx bx-code-curly'></i> Développement Web</h3>
+                <div class="skill-item">
+                    <span>HTML5</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>CSS3</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>JavaScript</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>PHP</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Laravel</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="70%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class='bx bx-data'></i> Base de Données & Outils</h3>
+                <div class="skill-item">
+                    <span>SQL</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Git/GitHub</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>VS Code</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <span>Photoshop</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="65%"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class='bx bx-cog'></i> Autres Compétences</h3>
+                <div class="skill-item">
+                    <span>Maintenance Informatique</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Mixologie</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <span>Gestion de Bar</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects scroll-reveal" id="projects">
+        <div class="section-bg-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="section-overlay"></div>
+        
+        <h2 class="section-title">Mes Projets</h2>
+        
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="1.PNG" width="450px" height="250px" alt="Site Vitrine ORIA">
+                </div>
+                <h3>Site Vitrine ORIA</h3>
+                <p>Site vitrine moderne avec animations avancées et design responsive. Utilisation des dernières techniques CSS et JavaScript pour une expérience utilisateur optimale.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Animations</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="2.png" width="450px" height="250px" alt="Portfolio Personnel">
+                </div>
+                <h3>Portfolio Personnel</h3>
+                <p>Portfolio responsive présentant mes compétences et réalisations avec des effets visuels modernes et une navigation fluide (au début).</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Responsive</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="3.PNG" width="450px" height="250px" alt="Page Connexion Glassmorphism">
+                </div>
+                <h3>Page Connexion Glassmorphism</h3>
+                <p>Interface de connexion et inscription avec effet glassmorphism, offrant une expérience utilisateur moderne et élégante.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">Glassmorphism</span>
+                    <span class="tech-tag">UI/UX</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="4.JPG" width="450px" height="250px" alt="Fièrement Béninois">
+                </div>
+                <h3>Fièrement Béninois</h3>
+                <p>Site complet développé avec Laravel lors d'un hackathon, mettant en valeur la culture béninoise avec des fonctionnalités avancées.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Laravel</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Bootstrap</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="6.png" width="450px" height="250px" alt="Application de gestion de produit">
+                </div>
+                <h3>Application de Gestion de Vente de Produit</h3>
+                <p>Interface de gestion de vente de produit vous permettant d'enregistrer vos produits de les supprimer et si un erreur a été faite lors de l'enregistrement de modifier</p>
+                <div class="project-tech">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">E-commerce</span>
+                    <span class="tech-tag">My SQL</span>
+                    <span class="tech-tag">Dashboard</span>
+                </div>
+            </div>
+
+        
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="7.png" width="450px" height="250px" alt="Application de gestion de contact">
+                </div>
+                <h3>Application de Gestion de Contacts</h3>
+                <p>Interface de gestion de contact vous permettant d'enregistrer vos contacts suisvi de leur adresse email et nom</p>
+                <div class="project-tech">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">My SQL</span>
+                    <span class="tech-tag">Dashboard</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">
+                    <img src="5.jpg" width="450px" height="250px" alt="Portfolio M. TOVODOUNNON">
+                </div>
+                <h3>Portfolio M. TOVODOUNNON</h3>
+                <p>Site portfolio complet pour le DG de l'EIG avec système de vente de livres et prise de rendez-vous intégrés.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Laravel</span>
+                    <span class="tech-tag">E-commerce</span>
+                    <span class="tech-tag">Calendrier</span>
+                    <span class="tech-tag">Dashboard</span>
+                </div>
+            </div>
+            
+            <center><div class="project-card" style="margin: 0 auto;">
+                <div class="project-icon">
+                    <i class='bx bx-code-block'></i>
+                </div>
+                <h3>Projets à Venir</h3>
+                <p>Toujours à la recherche de nouveaux défis et opportunités pour créer des solutions innovantes et impactantes.</p>
+                <div class="project-tech">
+                    <span class="tech-tag">Innovation</span>
+                    <span class="tech-tag">Créativité</span>
+                    <span class="tech-tag">Excellence</span>
+                </div>
+            </center>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="about scroll-reveal" id="experience">
+        <div class="section-bg-image" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="section-overlay"></div>
+        
+        <h2 class="section-title">Expérience & Formation</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item scroll-reveal">
+                <div class="timeline-icon">
+                    <i class='bx bx-graduation'></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>Formation Développement Web</h3>
+                    <span class="timeline-date">2024-2025</span>
+                    <p>Formation professionnelle en développement web à EIG BENIN (en attente de certification). Apprentissage approfondi des technologies web modernes.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item scroll-reveal">
+                <div class="timeline-icon">
+                    <i class='bx bx-diploma'></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>DT IMI</h3>
+                    <span class="timeline-date">2023-2024</span>
+                    <p>Diplôme du Technicien en Initiation et Maintenance Informatique. Maîtrise de la maintenance et réparation de systèmes informatiques.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item scroll-reveal">
+                <div class="timeline-icon">
+                    <i class='bx bx-drink'></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>Barman</h3>
+                    <span class="timeline-date">2022-2024</span>
+                    <p>Expérience en restauration chez Oasis Restaurant Lounge Bar et Malibu Lounge Bar. Développement des compétences en service client et mixologie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Modern -->
+    <footer class="footer">
+        <div class="footer-bg"></div>
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-col brand">
+                    <a href="#home" class="footer-logo">TY.</a>
+                    <h3>Thalès Yaleck</h3>
+                    <p>Développeur Web & Designer Passionné</p>
+                    <div class="footer-social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61577926646539" target="_blank" title="Facebook"><i class='bx bxl-facebook'></i></a>
+                        <a href="https://wa.me/2290140851046" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="https://linkedin.com/in/yaleck-thales" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                        <a href="https://github.com/Yaleck79" target="_blank" title="GitHub"><i class='bx bxl-github'></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#skills">Compétences</a></li>
+                        <li><a href="#projects">Projets</a></li>
+                        <li><a href="contact.php">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col contact">
+                    <h4>Contact Direct</h4>
+                    <div class="contact-info">
+                        <p><i class='bx bx-envelope'></i> thalesyaleckmiracle@gmail.com</p>
+                        <p><i class='bx bx-phone'></i> +229 01 40 85 10 46</p>
+                        <p><i class='bx bx-map'></i> Cotonou, Bénin</p>
+                    </div>
+                </div>
+                
+                <div class="footer-col cta">
+                    <h4>Prêt à collaborer ?</h4>
+                    <p>Transformons vos idées en réalité digitale</p>
+                    <a href="contact.php" class="footer-btn">Commencer un Projet</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Thalès Yaleck. Tous droits réservés.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Mentions légales</a>
+                        <a href="#">Politique de confidentialité</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class='bx bx-chevron-up'></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
