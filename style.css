@@ -527,11 +527,7 @@ span {
     left: 0;
 }
 
-.skill-category:hover {
-    border-color: var(--purple-color);
-    transform: translateY(-15px);
-    box-shadow: 0 25px 60px var(--shadow-hover);
-}
+
 
 .skill-category h3 {
     font-size: 2.8rem;
