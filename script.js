@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "Créateur de Solutions", 
             "Technicien IT", 
             "Passionné de Code",
-            "Barman Professionnel",
             "Musicien"
         ],
         typeSpeed: 100,
