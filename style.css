@@ -1,3 +1,10 @@
+/* Années de la timeline en bleu pur */
+.timeline-date.blue-year {
+    background: none !important;
+    color: #1976d2 !important;
+    border: 2px solid #1976d2 !important;
+    font-weight: bold;
+}
 * {
     margin: 0;
     padding: 0;
@@ -152,7 +159,7 @@ section {
     align-items: center;
     gap: 8rem;
     position: relative;
-    background: url('https://images.unsplash.com/photo-1554306274-f23873d9a26c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+    background: url('https://images.unsplash.com/photo-1604147495798-57beb5d6af73?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dhttps://images.unsplash.com/photo-1604147495798-57beb5d6af73?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
     background-attachment: fixed;
     padding: 12rem 9% 8rem;
 }
@@ -629,19 +636,20 @@ span {
 .timeline-date {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background: var(--second-bg-color);
-    border: var(--main-color) solid 2px;
-    color: var(--main-color);
     border-radius: 25px;
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
+        border-radius: 25px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
 }
 
 .timeline-content p {
     font-size: 1.5rem;
     line-height: 1.7;
-    color: var(--text-color);
+
 }
 
 /* Footer Modern */
